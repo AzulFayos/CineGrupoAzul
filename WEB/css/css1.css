@@ -1,0 +1,52 @@
+
+
+.logo{
+   position: relative;
+   width: 50%;
+   left: 64%;
+}
+
+#navbarNavDropdown {
+    
+    position:auto;  
+    margin-right:-8%;
+}
+
+
+#dropdownMenu2{
+    position:relative;
+    right: 270%;
+    transform: translatex(-50%);
+    
+}
+
+.dropdown-menu{
+    position:absolute;
+    transform: translatex(-270%);
+    width:fit-content;
+    height: fit-content;
+}
+
+/*.iniciosesion{
+    padding: 15%;
+    font-size: 95%;
+    vertical-align: center;
+    align-self: baseline;
+}*/
+#wordspacing{
+    word-spacing: normal;
+}
+.text-center{
+    background-color: #0d6efd; 
+}
+.container{
+    color:aliceblue;
+    text-align:20%;
+    position: relative;
+}
+.row {
+    vertical-align: right;
+    align-self: baseline;
+}
+
+

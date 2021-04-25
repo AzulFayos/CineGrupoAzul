@@ -1,0 +1,63 @@
+drop table if exists actors, address, categories, Cities,
+laravel.Countries, laravel.Customers,`laravel`.`events`, laravel.events_categories, laravel.failedJobs, laravel.moviesActors,
+laravel.FilmTexts, laravel.Halls, laravel.Inventories, laravel.languages, laravel.Marathones, laravel.marathones_categories, laravel.migrations, laravel.movieActors, laravel.movies, laravel.movies_categories,
+laravel.movieTexts, laravel.passwordResets, laravel.Payments, laravel.Posters, laravel.Seats, laravel.Staffs, laravel.Stores, laravel.stores_staffs, laravel.Tickets, laravel.trailers,laravel.users;
+
+
+tabla:
+
+Actores:
+
+insert into actors (idActor, firstName, lastname, lastUpdate) values (1, 'Sascha', 'Keedwell', '2020-12-29 14:44:38');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (2, 'Pierette', 'Valentin', '2020-06-29 01:37:43');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (3, 'Annetta', 'Torbeck', '2020-05-04 23:31:48');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (4, 'Penrod', 'Grebert', '2020-09-24 09:11:40');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (5, 'Lem', 'Brenstuhl', '2020-06-03 09:44:19');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (6, 'Millisent', 'Tiron', '2021-02-18 11:59:30');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (7, 'Harrison', 'Busse', '2021-04-20 13:41:00');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (8, 'Danica', 'Dickman', '2020-04-28 05:30:06');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (9, 'Tara', 'Labba', '2020-06-03 03:45:29');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (10, 'Virgie', 'Cotton', '2021-01-15 14:01:40');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (11, 'Odille', 'Ivankov', '2020-05-02 16:29:30');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (12, 'Katee', 'Kaubisch', '2020-09-30 16:45:55');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (13, 'Indira', 'Biggans', '2020-10-07 05:40:41');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (14, 'Vilhelmina', 'Darrigoe', '2020-11-22 13:55:17');
+insert into actors (idActor, firstName, lastname, lastUpdate) values (15, 'Papagena', 'Aldie', '2020-10-21 17:00:34');
+
+
+address:
+
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (1, 'amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu', 'justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula', 'vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero', 'mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus at', 14, '2020-07-07 10:27:14', 1);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (2, 'pede justo eu massa donec dapibus duis at velit eu', 'ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus', 'sit amet consectetuer adipiscing elit proin risus praesent lectus vestibulum quam sapien', 'elit ac nulla sed vel enim sit amet nunc viverra dapibus', 12, '2020-04-29 20:14:09', 2);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (3, 'mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam', 'sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at', 'duis ac nibh fusce lacus purus aliquet at feugiat non', 'nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum', 9, '2020-10-14 02:03:11', 3);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (4, 'felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed', 'tincidunt eget tempus vel pede morbi porttitor lorem id ligula', 'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus', 'enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet', 16, '2020-04-28 15:12:52', 4);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (5, 'sapien cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam turpis adipiscing lorem vitae', 'vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu', 'consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien', 'vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor', 7, '2020-07-12 03:17:45', 5);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (6, 'ac est lacinia nisi venenatis tristique fusce congue diam id', 'lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede', 'hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget', 'vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra', 9, '2020-10-07 22:16:18', 6);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (7, 'dui luctus rutrum nulla tellus in sagittis dui vel nisl duis', 'sapien a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis ut', 'lobortis ligula sit amet eleifend pede libero quis orci nullam molestie', 'eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse', 17, '2020-07-13 13:52:02', 7);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (8, 'quis tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie sed justo pellentesque', 'non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut', 'suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit ligula', 'vitae mattis nibh ligula nec sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy', 15, '2020-06-23 07:02:20', 8);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (9, 'eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus', 'suscipit nulla elit ac nulla sed vel enim sit amet nunc viverra dapibus', 'duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget', 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare', 17, '2020-08-22 07:15:16', 9);
+insert into address (idAddress, address, addresss2, district, postalCode, phone, lastUpdate, cities_idCity) values (10, 'at velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget congue eget', 'magna at nunc commodo placerat praesent blandit nam nulla integer pede', 'suspendisse potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient', 'vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa', 5, '2020-10-23 17:54:00', 10);
+
+
+cities: 
+
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (1, 'tristique in tempus sit amet sem', '2021-03-15 02:13:26', 1);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (2, 'ligula sit amet eleifend pede libero quis orci', '2021-01-15 00:33:11', 2);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (3, 'porta volutpat quam pede lobortis ligula sit amet', '2020-05-17 12:22:27', 3);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (4, 'duis faucibus', '2020-10-28 01:32:37', 4);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (5, 'faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus', '2020-06-10 11:37:51', 5);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (6, 'nisl nunc rhoncus', '2020-09-17 18:22:24', 6);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (7, 'pellentesque volutpat dui maecenas tristique est et tempus', '2021-03-20 12:59:23', 7);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (8, 'dapibus nulla suscipit ligula in lacus curabitur at', '2020-09-03 07:11:29', 8);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (9, 'tortor quis', '2020-07-04 14:22:50', 9);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (10, 'curabitur in libero', '2020-08-22 09:34:12', 10);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (11, 'eu', '2020-11-17 01:23:46', 11);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (12, 'justo pellentesque viverra pede ac diam cras pellentesque', '2020-05-16 11:12:54', 12);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (13, 'suscipit ligula in lacus curabitur at ipsum', '2020-08-09 14:11:26', 13);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (14, 'ipsum primis in faucibus orci luctus et ultrices', '2021-02-22 13:32:17', 14);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (15, 'in porttitor pede', '2020-09-05 21:11:44', 15);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (16, 'nisl aenean lectus pellentesque eget nunc donec quis orci', '2021-02-14 18:34:08', 16);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (17, 'sapien quis libero nullam sit amet turpis elementum', '2020-06-01 23:29:31', 17);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (18, 'maecenas tincidunt lacus at velit', '2020-08-09 03:04:48', 18);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (19, 'blandit ultrices enim', '2020-04-25 12:47:43', 19);
+insert into cities (idCity, categoryName, lastUpdate, countries_idCountry) values (20, 'elementum eu interdum', '2021-02-17 07:37:27', 20);

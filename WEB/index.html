@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CINEMATOGRAFO</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" type="text/css" href="./css/css.css">
+  <link href="./css/style.css?a" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link href="./css/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./login/css/reset.css"> 
+  <link rel="stylesheet" href="./login/css/style.css"> 
+  <link rel="stylesheet" href="./login/css/demo.css">
+  <link href="./img/favicon.png" rel="shortcut icon" type="image/x-icon" />
+</head>
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid" style="width: auto;">
+        <div style="width: 80%;">
+          <a class="logo" aria-current="page" href="index.html">
+            <img class="logo" src="./img/logo.png"/>
+          </a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbars">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./cartelera.html">Cartelera</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./ubicaciones.html">Ubicaciones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./eventos.html">Eventos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./promociones.html">Promociones</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./tarjetas.html">Tarjetas Regalo</a>
+            </li>
+            <li id="botonheader" class="js-signin-modal-trigger nav-item">
+              <a class="nav-link" href="#0" data-signin="login">
+                Entrar
+              </a>
+            </li>
+            <li id="botonheader" class="js-signin-modal-trigger nav-item">
+              <a class="nav-link" href="#0" data-signin="signup">
+                Registrarse
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        
+</header>
+    <!-- Bootstrap core CSS -->
+
+<br>
+  <main class="margenes2">
+
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./img/puerta.jpeg" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="false" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1>Bienvenido a este nuestro cine.</h1>
+              <p></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/carrte.jpeg" class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="false" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <div class="container"> 
+            <div class="carousel-caption">
+              
+              <p></p>
+              <p><a class="btn btn-lg btn-primary" href="cartelera.html" role="button">Cartelera</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/carrusel.jpeg"class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="false" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>A la carta</h1>
+              <p>Mira nuestras peliculas desde tu sofá</p>
+              <p><a class="btn btn-lg btn-primary" href="carta.html" role="button">Ir A la carta</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+   
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button"  data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" ></span>
+  
+        <span class="visually-hidden"></span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button"  data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true" ></span>
+        <span class="visually-hidden"></span>
+      </a>
+    </div>
+    <p></p>
+   
+  
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+  <center>
+    <div class="container marketing">
+  
+      <!-- Three columns of text below the carousel -->
+      
+      <div  class="row">
+        <div class="col-lg-4">
+         <img src="./img/foto.jpg" class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <h2>Serie A</h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="cartelera.html" role="button">ir a la pagina &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img src="./img/sharknado2.jpg"class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <h2>Serie B</h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="serieb.html" role="button">ir a la pagina &raquo;</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img src="./img/sofá.jpeg"class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg"  role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/></img>
+  
+          <h2>A la Carta</h2>
+          <p></p>
+          <p><a class="btn btn-secondary" href="carta.html" role="button">ir a la pagina &raquo;</a></p>
+        </div>
+      </div>
+    </center>
+  <div class="album py-5">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="./img/mejorpelicula.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
+
+            <div class="card-body">
+              <p class="card-text">Mejor pelicula</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">En persona</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver en a la carta</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="./img/mejormes.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
+
+            <div class="card-body">
+              <p class="card-text">mejor pelicula del mes.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">En persona</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver en a la carta</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="./img/taquilla.webp" class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/></img>
+            <div class="card-body">
+              <p class="card-text">La mas taquillera</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">En persona</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver en a la carta</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+  </div>
+</main>
+
+<div id="margenes2" class="row mb-2 text-white">
+  <div class="col-md-6">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="mb-0">Criticas de nuestro cine</h3>
+        <p class="card-text mb-auto">Recomendacion exustiva de nuestro cine aqui</p>
+        <a href="#" class="stretched-link">Ver mas criticas</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p-4 d-flex flex-column position-static">
+        <h3 class="mb-0">¿Que es nuestro A la carta?</h3>
+        <div class="mb-1 text-white">Nov 11</div>
+        <p class="mb-auto"></p>
+        <a href="#" class="stretched-link text-white">Continuar leyendo</a>
+      </div>
+    </div>
+  </div>
+</div>
+  </body>
+
+<!-- MODAL -->
+<div class="loginD cd-signin-modal js-signin-modal"> 
+  <div class="loginD cd-signin-modal__container"> 
+    <ul class="loginD cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+      <li><a href="#0" data-signin="login" data-type="login">Entrar</a></li>
+      <li><a href="#0" data-signin="signup" data-type="signup">Registrarse</a></li>
+    </ul>
+
+    <div class="loginD cd-signin-modal__block js-signin-modal-block" data-type="login"> 
+      <form class="loginD cd-signin-modal__form">
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">Correo</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="Correo">
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Contraseña</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Contraseña">
+          <a href="#0" class="loginD cd-signin-modal__hide-password js-hide-password">Esconder</a>
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <input type="checkbox" id="remember-me" checked class="loginD cd-signin-modal__input ">
+          <label for="remember-me">Recordarme</label>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Entrar">
+        </p>
+      </form>
+      
+      <p class="loginD cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Olvidaste tu contraseña?</a></p>
+    </div> 
+
+    <div class="loginD cd-signin-modal__block js-signin-modal-block" data-type="signup"> 
+      <form class="loginD cd-signin-modal__form">
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Usuario</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Usuario">
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">Correo</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="Correo">
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Contraseña</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Contraseña">
+          <a href="#0" class="loginD cd-signin-modal__hide-password js-hide-password">Esconder</a>
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
+          <label for="accept-terms">Acepto los <a href="#0">términos y condiciones</a></label>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Crear cuenta">
+        </p>
+      </form>
+    </div> 
+
+    <div class="loginD cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
+      <p class="loginD cd-signin-modal__message">Perdiste tu contraseña? Por favor, pon tu correo para enviar un link de restablecimiento.</p>
+
+      <form class="loginD cd-signin-modal__form">
+        <p class="loginD cd-signin-modal__fieldset">
+          <label class="loginD cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">Correo</label>
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="Correo">
+          <span class="loginD cd-signin-modal__error">Error</span>
+        </p>
+
+        <p class="loginD cd-signin-modal__fieldset">
+          <input class="loginD cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
+        </p>
+      </form>
+
+      <p class="loginD cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Volver a "Entrar"</a></p>
+    </div> 
+    <a href="#0" class="loginD cd-signin-modal__close js-close">Cerrar</a>
+  </div> 
+</div> 
+
+<!-- MODAL -->
+
+  <footer class="bg-blue text-center text-lg-start text-white p-1">
+    <footer class="text-center text-lg-start ">
+      <!-- Grid container -->
+      <div class="container p-5">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase">Contacto</h5>
+  
+          <ul class="list-unstyled mb-0">
+            <li>
+              <a href="#!" class="text-white">+34 655 52 17 60</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">contacto@kinocines.com</a>
+            </li> 
+            <li>
+              <a href="#!" class="text-white">Información sobre el cine</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white">Privacidad</a>
+            </li>
+          </ul>
+        </div>
+       
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+         
+  
+          <ul class="list-unstyled mb-0">
+          <li>
+           <h5> <a href="FAQS.html"  class="text-white" class="text-uppercase">FAQs</a></h5>
+          </li>
+            <li>
+              <a href="FAQS.html" class="text-white">¿Cómo canjeo mi entrada cuando llegue al cine?</a>
+            </li>
+            <li>
+              <a href="FAQS.html" class="text-white">¿Cómo uso el filtro de películas?</a>
+            </li>
+            <li>
+              <a href="FAQS.html" class="text-white">¿Como son los métodos de pago?</a>
+            </li>
+            <li>
+              <a href="FAQS.html" class="text-white">¿Que horario tienen nuestros cines?</a>
+            </li>
+            <li>
+              <a href="FAQS.html" class="text-white">¿Como funciona el sistema cine a la carta?</a>
+            </li>
+          </ul>
+        </div>
+  
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0">Nuestras redes sociales</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="#!" class="text-white"><i class="bi bi-facebook"></i>Facebook</a>
+            </li>
+            <li>
+              <a href="#!" class="text-white"><i class="bi bi-instagram"></i>Instagram</a>
+            </li>
+            <li>
+              <a href="" class="text-white"><i class="bi bi-twitter"></i>Twitter</a>
+            </li>
+            <li>
+              <a href="" class="text-white"><i class="bi bi-youtube"></i>Youtube</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-uppercase mb-0">Nuestras Localizaciones</h5>
+  
+          <ul class="list-unstyled">
+            <li>
+              <a href="./ubicaciones.html" class="text-white"></i>Madrid</a>
+            </li>
+            <li>
+              <a href="./ubicaciones.html" class="text-white"></i>Barcelona</a>
+            </li>
+            <li>
+              <a href="./ubicaciones.html" class="text-white"></i>Cartagena</a>
+            </li>
+            <li>
+              <a href="./ubicaciones.html" class="text-white"></i>Agora também em portugal: Oporto</a>
+            </li> 
+          </ul>
+        </div>
+          <!--Grid column-->
+        </div>
+        <!--Grid row-->
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.2)">
+       <a href="https://eur-lex.europa.eu/legal-content/ES/TXT/?uri=CELEX:52016PC0593" class="text-white">CINEMATOGRAFO © 2021 Copyright:</a>
+        <a class="text-white" href="https://mdbootstrap.com/%22%3EMDBootstrap.com"></a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+  </footer>
+  <center>
+  <div id="cajacookies">
+    <p><button id="boton" onclick="aceptarCookies()" class="pull-right"><i class="fa fa-times "></i>  Aceptar y cerrar éste mensaje</button>
+    Éste sitio web usa cookies &#x1F36A;, si permanece aquí acepta su uso.
+    Puede leer más sobre el uso de cookies en nuestra <a href="https://cookiesandyou.com/">política de privacidad</a>.
+    </p>
+    </div>
+  </center>
+<script>
+  /* ésto comprueba la localStorage si ya tiene la variable guardada */
+  function compruebaAceptaCookies() {
+    if(localStorage.aceptarCookies == 'true'){
+      cajacookies.style.display = 'none';
+    }
+  } 
+  
+  /* aquí guardamos la variable de que se ha
+  aceptado el uso de cookies así no mostraremos
+  el mensaje de nuevo */
+  function aceptarCookies() {
+    localStorage.aceptarCookies = 'true';
+    cajacookies.style.display = 'none';
+  }
+  
+  /* ésto se ejecuta cuando la web está cargada */
+  $(document).ready(function () {
+    compruebaAceptaCookies();
+  });
+  </script>
+</html>

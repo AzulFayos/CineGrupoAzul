@@ -1,0 +1,30 @@
+.text-center{
+    background-color: #0d91fd; 
+}
+
+.logo {
+    width: 60%;
+}
+@media (max-width: 768px){
+    .logo {
+        margin: 0 auto;
+        width: 70%;
+        position: relative;
+        left: 9%;
+    }
+}
+
+
+
+
+.responsiveCard{
+    width: 18rem;
+}
+
+@media (max-width:768px) {
+    .responsiveCard{
+        width: 21.3rem;
+    }
+}
+
+
