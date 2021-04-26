@@ -25,20 +25,6 @@ CREATE SCHEMA IF NOT EXISTS `laravel` DEFAULT CHARACTER SET utf8 ;
 USE `laravel` ;
 
 -- -----------------------------------------------------
--- Table `laravel`.`actors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`actors` (
-  `idActor` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(30) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `actorPhoto` BLOB NOT NULL,
-  PRIMARY KEY (`idActor`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`cities`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`cities` (
@@ -123,19 +109,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`movieTexts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`movieTexts` (
-  `idMovieTexts` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idMovieTexts`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`Halls`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`Halls` (
@@ -146,41 +119,6 @@ CREATE TABLE IF NOT EXISTS `laravel`.`Halls` (
   UNIQUE INDEX `idHall_UNIQUE` (`idHall` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`staffs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`staffs` (
-  `idStaff` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(45) NOT NULL,
-  `lastName` VARCHAR(45) NOT NULL,
-  `picture` BLOB NULL DEFAULT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `username` VARCHAR(30) NOT NULL,
-  `password` VARCHAR(200) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `address_idAddress` SMALLINT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idStaff`),
-  INDEX `fk_staffs_address1_idx` (`address_idAddress` ASC) VISIBLE,
-  CONSTRAINT `fk_staffs_address1`
-    FOREIGN KEY (`address_idAddress`)
-    REFERENCES `laravel`.`address` (`idAddress`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`types`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`types` (
-  `idtype` INT NOT NULL,
-  `typeName` VARCHAR(45) NULL,
-  `lastUpdate` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idtype`))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -214,19 +152,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`payments` (
   `types_idtype` INT NOT NULL,
   `stores_idStore` TINYINT NOT NULL,
   PRIMARY KEY (`idPayment`),
-  INDEX `fk_payments_staffs1_idx` (`staffs_idStaff` ASC) VISIBLE,
-  INDEX `fk_payments_types1_idx` (`types_idtype` ASC) VISIBLE,
   INDEX `fk_payments_stores1_idx` (`stores_idStore` ASC) VISIBLE,
-  CONSTRAINT `fk_payments_staffs1`
-    FOREIGN KEY (`staffs_idStaff`)
-    REFERENCES `laravel`.`staffs` (`idStaff`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_payments_types1`
-    FOREIGN KEY (`types_idtype`)
-    REFERENCES `laravel`.`types` (`idtype`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_payments_stores1`
     FOREIGN KEY (`stores_idStore`)
     REFERENCES `laravel`.`stores` (`idStore`)
@@ -247,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`marathones` (
   `marathonRating` DOUBLE NOT NULL,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `payments_idPayment` SMALLINT UNSIGNED NOT NULL,
+  `marathonCategory` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idMarathones`),
   INDEX `fk_marathones_payments1_idx` (`payments_idPayment` ASC) VISIBLE,
   CONSTRAINT `fk_marathones_payments1`
@@ -273,6 +200,9 @@ CREATE TABLE IF NOT EXISTS `laravel`.`movies` (
   `specialFeatures` VARCHAR(500) NULL DEFAULT NULL,
   `lastUpdate` TIMESTAMP NOT NULL,
   `languages_idLanguage` TINYINT NOT NULL,
+  `actors` VARCHAR(45) NOT NULL,
+  `languages` VARCHAR(10) NOT NULL,
+  `movieCategory` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idMovie`),
   INDEX `idLanguage_idx` (`original_language_id` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -284,11 +214,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`posters` (
   `idPoster` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `posterLink1` VARCHAR(500) NOT NULL,
-  `posterLink2` VARCHAR(500) NULL,
-  `posterLink3` VARCHAR(500) NULL,
-  `posterLink4` VARCHAR(500) NULL,
-  `posterLink5` VARCHAR(500) NULL,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `posterName` VARCHAR(45) NOT NULL,
   `movies_idMovie` INT UNSIGNED NOT NULL,
@@ -332,6 +257,7 @@ CREATE TABLE IF NOT EXISTS `laravel`.`events` (
   `eventTitle` VARCHAR(300) NOT NULL,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `payments_idPayment1` SMALLINT UNSIGNED NOT NULL,
+  `eventCategory` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idEvent`),
   INDEX `fk_events_payments1_idx` (`payments_idPayment1` ASC) VISIBLE,
   CONSTRAINT `fk_events_payments1`
@@ -348,7 +274,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`tickets` (
   `idTicket` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `ticketPrize` DECIMAL(10,0) NULL DEFAULT NULL,
+  `ticketPrize` DECIMAL(10,0) NOT NULL,
   `movies_idMovie` INT UNSIGNED NOT NULL,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `payments_idPayment` SMALLINT UNSIGNED NOT NULL,
@@ -362,14 +288,14 @@ CREATE TABLE IF NOT EXISTS `laravel`.`tickets` (
   `date` TIMESTAMP NOT NULL,
   `events_idEvent` INT UNSIGNED NOT NULL,
   `marathones_idMarathones` INT UNSIGNED NOT NULL,
-  `Halls_idHall` TINYINT UNSIGNED NOT NULL,
+  `halls_idHall` TINYINT UNSIGNED NOT NULL,
   PRIMARY KEY (`idTicket`),
   INDEX `fk_Tickets_movies_idx` (`movies_idMovie` ASC) VISIBLE,
   INDEX `fk_tickets_payments1_idx` (`payments_idPayment` ASC) VISIBLE,
   INDEX `fk_tickets_customers1_idx` (`customers_idCustomer` ASC) VISIBLE,
   INDEX `fk_tickets_events1_idx` (`events_idEvent` ASC) VISIBLE,
   INDEX `fk_tickets_marathones1_idx` (`marathones_idMarathones` ASC) VISIBLE,
-  INDEX `fk_tickets_Halls1_idx` (`Halls_idHall` ASC) VISIBLE,
+  INDEX `fk_tickets_Halls1_idx` (`halls_idHall` ASC) VISIBLE,
   CONSTRAINT `fk_Tickets_movies`
     FOREIGN KEY (`movies_idMovie`)
     REFERENCES `laravel`.`movies` (`idMovie`),
@@ -394,22 +320,10 @@ CREATE TABLE IF NOT EXISTS `laravel`.`tickets` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tickets_Halls1`
-    FOREIGN KEY (`Halls_idHall`)
+    FOREIGN KEY (`halls_idHall`)
     REFERENCES `laravel`.`Halls` (`idHall`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`categories` (
-  `idCategory` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `categoryName` VARCHAR(25) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idCategory`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -433,18 +347,6 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`languages`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`languages` (
-  `idLanguage` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `languageName` CHAR(200) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idLanguage`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`migrations`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`migrations` (
@@ -456,27 +358,6 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`movies_categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`movies_categories` (
-  `idMovies_categories` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `categories_idCategory` INT UNSIGNED NOT NULL,
-  `movies_idMovie` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idMovies_categories`),
-  INDEX `fk_movies_categories_categories_idx` (`categories_idCategory` ASC) VISIBLE,
-  INDEX `fk_movies_categories_movies_idx` (`movies_idMovie` ASC) VISIBLE,
-  CONSTRAINT `fk_movies_categories_categories`
-    FOREIGN KEY (`categories_idCategory`)
-    REFERENCES `laravel`.`categories` (`idCategory`),
-  CONSTRAINT `fk_movies_categories_movies`
-    FOREIGN KEY (`movies_idMovie`)
-    REFERENCES `laravel`.`movies` (`idMovie`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -506,108 +387,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`events_categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`events_categories` (
-  `idEvents_categories` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `categories_idCategory` INT UNSIGNED NOT NULL,
-  `events_idEvent` INT UNSIGNED NOT NULL,
-  `categories_idCategory1` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idEvents_categories`),
-  INDEX `fk_events_categories_events1_idx` (`events_idEvent` ASC) VISIBLE,
-  INDEX `fk_events_categories_categories1_idx` (`categories_idCategory1` ASC) VISIBLE,
-  CONSTRAINT `fk_events_categories_events1`
-    FOREIGN KEY (`events_idEvent`)
-    REFERENCES `laravel`.`events` (`idEvent`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_events_categories_categories1`
-    FOREIGN KEY (`categories_idCategory1`)
-    REFERENCES `laravel`.`categories` (`idCategory`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`marathones_categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`marathones_categories` (
-  `idMarathon_categories` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `categories_idCategory` INT UNSIGNED NOT NULL,
-  `marathones_idMarathones` INT NOT NULL,
-  `marathones_idMarathones1` INT UNSIGNED NOT NULL,
-  `categories_idCategory1` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idMarathon_categories`),
-  INDEX `fk_marathones_categories_marathones1_idx` (`marathones_idMarathones1` ASC) VISIBLE,
-  INDEX `fk_marathones_categories_categories1_idx` (`categories_idCategory1` ASC) VISIBLE,
-  CONSTRAINT `fk_marathones_categories_marathones1`
-    FOREIGN KEY (`marathones_idMarathones1`)
-    REFERENCES `laravel`.`marathones` (`idMarathones`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_marathones_categories_categories1`
-    FOREIGN KEY (`categories_idCategory1`)
-    REFERENCES `laravel`.`categories` (`idCategory`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`stores_staffs`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`stores_staffs` (
-  `idStore` TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `idStaff` TINYINT UNSIGNED NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `staffs_idStaff` TINYINT UNSIGNED NOT NULL,
-  `stores_idStore` TINYINT NOT NULL,
-  PRIMARY KEY (`idStore`, `idStaff`),
-  INDEX `fk_stores_staffs_staffs_idx` (`staffs_idStaff` ASC) VISIBLE,
-  INDEX `fk_stores_staffs_stores_idx` (`stores_idStore` ASC) VISIBLE,
-  CONSTRAINT `fk_stores_staffs_staffs`
-    FOREIGN KEY (`staffs_idStaff`)
-    REFERENCES `laravel`.`staffs` (`idStaff`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_stores_staffs_stores`
-    FOREIGN KEY (`stores_idStore`)
-    REFERENCES `laravel`.`stores` (`idStore`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`moviesActors`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`moviesActors` (
-  `idMovieActor` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `actors_idActor` SMALLINT UNSIGNED NOT NULL,
-  `movies_idMovie` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idMovieActor`),
-  INDEX `fk_moviesActors_actors1_idx` (`actors_idActor` ASC) VISIBLE,
-  INDEX `fk_moviesActors_movies1_idx` (`movies_idMovie` ASC) VISIBLE,
-  CONSTRAINT `fk_moviesActors_actors1`
-    FOREIGN KEY (`actors_idActor`)
-    REFERENCES `laravel`.`actors` (`idActor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_moviesActors_movies1`
-    FOREIGN KEY (`movies_idMovie`)
-    REFERENCES `laravel`.`movies` (`idMovie`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`movies_trailers`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`movies_trailers` (
@@ -624,54 +403,6 @@ CREATE TABLE IF NOT EXISTS `laravel`.`movies_trailers` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_movies_trailers_trailers1`
-    FOREIGN KEY (`trailers_idTrailer`)
-    REFERENCES `laravel`.`trailers` (`idTrailer`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`movies_languages`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`movies_languages` (
-  `idmovies_languages` INT NOT NULL,
-  `movies_idMovie` INT UNSIGNED NOT NULL,
-  `languages_idLanguage` TINYINT UNSIGNED NOT NULL,
-  `lastUpdate` TIMESTAMP NULL,
-  PRIMARY KEY (`idmovies_languages`),
-  INDEX `fk_movies_languages_movies1_idx` (`movies_idMovie` ASC) VISIBLE,
-  INDEX `fk_movies_languages_languages1_idx` (`languages_idLanguage` ASC) VISIBLE,
-  CONSTRAINT `fk_movies_languages_movies1`
-    FOREIGN KEY (`movies_idMovie`)
-    REFERENCES `laravel`.`movies` (`idMovie`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_movies_languages_languages1`
-    FOREIGN KEY (`languages_idLanguage`)
-    REFERENCES `laravel`.`languages` (`idLanguage`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`languages_trailers`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`languages_trailers` (
-  `idlanguages_trailers` INT NOT NULL,
-  `lastUpdate` TIMESTAMP NULL,
-  `languages_idLanguage` TINYINT UNSIGNED NOT NULL,
-  `trailers_idTrailer` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idlanguages_trailers`),
-  INDEX `fk_languages_trailers_languages1_idx` (`languages_idLanguage` ASC) VISIBLE,
-  INDEX `fk_languages_trailers_trailers1_idx` (`trailers_idTrailer` ASC) VISIBLE,
-  CONSTRAINT `fk_languages_trailers_languages1`
-    FOREIGN KEY (`languages_idLanguage`)
-    REFERENCES `laravel`.`languages` (`idLanguage`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_languages_trailers_trailers1`
     FOREIGN KEY (`trailers_idTrailer`)
     REFERENCES `laravel`.`trailers` (`idTrailer`)
     ON DELETE NO ACTION
@@ -762,48 +493,6 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`paypalDirect`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`paypalDirect` (
-  `idpaypal` INT NOT NULL,
-  `paypalAccount` VARCHAR(100) NULL,
-  `lasttUpdate` TIMESTAMP NOT NULL,
-  `cratedDate` TIMESTAMP NOT NULL,
-  `updatedDate` TIMESTAMP NOT NULL,
-  `papypalTransactionId` VARCHAR(255) NULL,
-  `paypalResourceId` VARCHAR(500) NULL,
-  `amount` FLOAT NOT NULL,
-  `quantity` INT NOT NULL,
-  `currency` VARCHAR(45) NULL,
-  `address1` VARCHAR(255) NULL,
-  `address2` VARCHAR(255) NULL,
-  `city` VARCHAR(100) NULL,
-  `state` VARCHAR(100) NULL,
-  `postalCode` VARCHAR(100) NULL,
-  `countryCode` VARCHAR(10) NULL,
-  `phone` VARCHAR(20) NULL,
-  `status` TINYINT NOT NULL,
-  PRIMARY KEY (`idpaypal`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`paypalCheckout`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`paypalCheckout` (
-  `idpaypalCheckout` INT NOT NULL,
-  `paypalCResourceId` VARCHAR(45) NULL,
-  `createdDate` TIMESTAMP NOT NULL,
-  `updatedDate` TIMESTAMP NOT NULL,
-  `amount` FLOAT NOT NULL,
-  `quantity` INT NOT NULL,
-  `currency` VARCHAR(45) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`idpaypalCheckout`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`paymentmethods`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`paymentmethods` (
@@ -820,37 +509,26 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`creditCardCheckout`
+-- Table `laravel`.`PosterLink`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`creditCardCheckout` (
-  `idCreditCardCheckout` INT NOT NULL,
-  `currency` VARCHAR(45) NOT NULL,
-  `amount` FLOAT NOT NULL,
-  `updateDate` TIMESTAMP NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL,
-  `quantity` INT NOT NULL,
-  `creditCardNumber` INT NULL,
-  `creditCardCvv` INT NULL,
-  `creditCardExpireYear` INT NULL,
-  `creditCardDate` INT NULL,
-  `creditCarOwner` VARCHAR(45) NULL,
-  `creditCardType` VARCHAR(45) NULL,
-  PRIMARY KEY (`idCreditCardCheckout`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `laravel`.`debitCardCheckout`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`debitCardCheckout` (
-  `iddebitCardCheckout` INT NOT NULL,
-  `debitCardType` VARCHAR(45) NULL,
-  `debitCardCvv` INT NULL,
-  `debitCardExpiryDate` INT NULL,
-  `debitCardOwner` VARCHAR(45) NULL,
-  `debitCardCheckoutcol` VARCHAR(45) NULL,
-  `lastUpdate` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`iddebitCardCheckout`))
+CREATE TABLE IF NOT EXISTS `laravel`.`PosterLink` (
+  `idPoster` INT NOT NULL AUTO_INCREMENT,
+  `idPosterLink` INT NOT NULL,
+  `posters_idPoster` INT UNSIGNED NOT NULL,
+  `users_idUser` BIGINT UNSIGNED NOT NULL,
+  PRIMARY KEY (`idPoster`, `idPosterLink`),
+  INDEX `fk_PosterLink_posters1_idx` (`posters_idPoster` ASC) VISIBLE,
+  INDEX `fk_PosterLink_users1_idx` (`users_idUser` ASC) VISIBLE,
+  CONSTRAINT `fk_PosterLink_posters1`
+    FOREIGN KEY (`posters_idPoster`)
+    REFERENCES `laravel`.`posters` (`idPoster`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_PosterLink_users1`
+    FOREIGN KEY (`users_idUser`)
+    REFERENCES `laravel`.`users` (`idUser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
