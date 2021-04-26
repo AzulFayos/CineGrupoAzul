@@ -76,25 +76,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `laravel`.`stores`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `laravel`.`stores` (
-  `idStore` TINYINT NOT NULL AUTO_INCREMENT,
-  `storeName` VARCHAR(45) NOT NULL,
-  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `address_idAddress` SMALLINT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idStore`),
-  INDEX `fk_stores_address1_idx` (`address_idAddress` ASC) VISIBLE,
-  CONSTRAINT `fk_stores_address1`
-    FOREIGN KEY (`address_idAddress`)
-    REFERENCES `laravel`.`address` (`idAddress`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `laravel`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`users` (
@@ -120,19 +101,13 @@ CREATE TABLE IF NOT EXISTS `laravel`.`customers` (
   `idCustomer` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
   `firstName` VARCHAR(45) NOT NULL,
   `lastName` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
   `active` BLOB NOT NULL,
   `createDate` DATETIME NOT NULL,
-  `stores_idStore` TINYINT NOT NULL,
   `address_idAddress` SMALLINT UNSIGNED NOT NULL,
   `users_idUser` BIGINT UNSIGNED NOT NULL,
   PRIMARY KEY (`idCustomer`),
-  INDEX `fk_Customers_Stores_idx` (`stores_idStore` ASC) VISIBLE,
   INDEX `fk_customers_address1_idx` (`address_idAddress` ASC) VISIBLE,
   INDEX `fk_customers_users1_idx` (`users_idUser` ASC) VISIBLE,
-  CONSTRAINT `fk_Customers_Stores`
-    FOREIGN KEY (`stores_idStore`)
-    REFERENCES `laravel`.`stores` (`idStore`),
   CONSTRAINT `fk_customers_address1`
     FOREIGN KEY (`address_idAddress`)
     REFERENCES `laravel`.`address` (`idAddress`)
@@ -206,6 +181,25 @@ CREATE TABLE IF NOT EXISTS `laravel`.`types` (
   `lastUpdate` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtype`))
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `laravel`.`stores`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `laravel`.`stores` (
+  `idStore` TINYINT NOT NULL AUTO_INCREMENT,
+  `storeName` VARCHAR(45) NOT NULL,
+  `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `address_idAddress` SMALLINT UNSIGNED NOT NULL,
+  PRIMARY KEY (`idStore`),
+  INDEX `fk_stores_address1_idx` (`address_idAddress` ASC) VISIBLE,
+  CONSTRAINT `fk_stores_address1`
+    FOREIGN KEY (`address_idAddress`)
+    REFERENCES `laravel`.`address` (`idAddress`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -594,11 +588,10 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `laravel`.`moviesActors` (
   `idMovieActor` SMALLINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `idMovie` SMALLINT UNSIGNED NOT NULL,
   `lastUpdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `actors_idActor` SMALLINT UNSIGNED NOT NULL,
   `movies_idMovie` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idMovieActor`, `idMovie`),
+  PRIMARY KEY (`idMovieActor`),
   INDEX `fk_moviesActors_actors1_idx` (`actors_idActor` ASC) VISIBLE,
   INDEX `fk_moviesActors_movies1_idx` (`movies_idMovie` ASC) VISIBLE,
   CONSTRAINT `fk_moviesActors_actors1`
